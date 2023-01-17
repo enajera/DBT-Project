@@ -33,7 +33,7 @@ jobs:
       with:
         title: "DBT Update"
         body: "This pull request updates the DBT models."
-        head: local
+        branch: local
         base: main
         
     - name: Auto Merge
