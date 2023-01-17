@@ -1,0 +1,39 @@
+name: DBT
+on:
+  push:
+    branches:
+      - local
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+
+    - name: Install dependencies
+      run: |
+        pip install dbt
+    - name: Run DBT
+      run: dbt run
+
+    - name: Create pull request
+      uses: peter-evans/create-pull-request@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        title: "DBT Update"
+        body: "This pull request updates the DBT models."
+        head: local
+        base: main
+        
+    - name: Auto Merge
+      uses: peter-evans/enable-pull-request-automerge@v2
+      with:
+          token: ${{ secrets.PAT }}
+          pull-request-number: 1
