@@ -5,4 +5,4 @@ Select * from DEV_RAW_DB.CANVAS.GOBTPAC;
 Select * from DEV_RAW_DB.CANVAS.GOBTPAC; 
 
 --Otra massss
- 
+ Select * from DEV_RAW_DB.CANVAS.GOBTPAC; 
