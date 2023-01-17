@@ -1,12 +1,26 @@
-default:
+my-snowflake-db:
   target: dev
   outputs:
     dev:
       type: snowflake
-      threads: 4
-      account: hxb84358.us-east-1.aws
-      user: enajera
-      pass: Alemania2023!
+      account: HGB39426
+
+      # User/password auth
+      user: DEV_DATA_STREAM
+      password: Irlanda7!
+
+      role: DEV_DATA_STREAM_ROLE
       database: DEV_RAW_DB
-      schema: CANVAS
       warehouse: DEV_WH_STREAM
+      schema: CANVAS
+      threads: 4
+      client_session_keep_alive: False
+      query_tag: test
+
+      # optional
+      connect_retries: 0 # default 0
+      connect_timeout: 10 # default: 10
+      retry_on_database_errors: False # default: false 
+      retry_all: False  # default: false
+
+
