@@ -3,8 +3,8 @@ default:
   outputs:
     dev:
       type: snowflake
-      threads: 1
-      host: hxb84358.us-east-1.aws
+      threads: 4
+      account: hxb84358.us-east-1.aws
       user: DEV_DATA_STREAM
       pass: Irlanda7!
       database: DEV_RAW_DB
