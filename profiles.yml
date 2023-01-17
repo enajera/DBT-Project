@@ -1,0 +1,12 @@
+default:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      threads: 1
+      host: https://hxb84358.us-east-1.snowflakecomputing.com
+      user: DEV_DATA_STREAM
+      pass: Irlanda7!
+      database: DEV_RAW_DB
+      schema: CANVAS
+      warehouse: DEV_WH_STREAM
