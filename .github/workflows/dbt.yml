@@ -39,8 +39,8 @@ jobs:
         
     - name: Auto Merge
       if: steps.cpr.outputs.pull-request-operation == 'created'
-        uses: peter-evans/enable-pull-request-automerge@v2
-        with:
+      uses: peter-evans/enable-pull-request-automerge@v2
+      with:
           token: ${{ secrets.PAT }}
           pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
           merge-method: squash
