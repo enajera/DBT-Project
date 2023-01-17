@@ -3,7 +3,7 @@ default:
   outputs:
     dev:
       type: snowflake
-      account: HGB39426
+      account: hxb84358.us-east-1
 
       # User/password auth
       user: DEV_DATA_STREAM
