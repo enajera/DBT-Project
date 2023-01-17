@@ -9,12 +9,12 @@ permissions:
   contents: write
 
 jobs:
-  Build:
+  Action-pull-request::
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v2
 
     - name: Set up Python
       uses: actions/setup-python@v2
@@ -29,13 +29,22 @@ jobs:
 
     - name: Create pull request
       id: cpr
-      uses: peter-evans/create-pull-request@v4
+      uses: devops-infra/action-pull-request@v0.5.3
       with:
         token: ${{ secrets.PAT }}
-        title: "DBT Update"
+        title: "DBT pull request "
+        assignee: ${{ github.actor }}
+        label: automatic,feature
         body: "This pull request updates the DBT models."
-        base: main
-
+        source_branch: local
+        target_branch: main
+        delete-branch: false
+        
+    - name: Check outputs
+      if: ${{ steps.cpr.outputs.pull-request-number }}
+      run: |
+        echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
+        echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
                
     - name: Enable Pull Request Automerge
       if: steps.cpr.outputs.pull-request-operation == 'created'
