@@ -4,6 +4,10 @@ on:
     branches:
       - local
 
+permissions:
+  pull-requests: write
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -27,8 +31,13 @@ jobs:
     - name: Create pull request
       uses: peter-evans/create-pull-request@v4
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
         title: "DBT Update"
         body: "This pull request updates the DBT models."
         head: local
         base: main
+        
+    - name: Auto Merge
+      uses: peter-evans/enable-pull-request-automerge@v2
+      with:
+          token: ${{ secrets.PAT }}
+          pull-request-number: 1
