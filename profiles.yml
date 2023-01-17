@@ -1,4 +1,4 @@
-my-snowflake-db:
+default:
   target: dev
   outputs:
     dev:
