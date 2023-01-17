@@ -2,11 +2,11 @@ default:
   target: dev
   outputs:
     dev:
-      type: snowflake
-      threads: 4
-      account: hxb84358.us-east-1.aws
-      user: DEV_DATA_STREAM
-      pass: Irlanda7!
-      database: DEV_RAW_DB
-      schema: CANVAS
-      warehouse: DEV_WH_STREAM
+      type:snowflake
+      threads:4
+      account:hxb84358.us-east-1.aws
+      user:DEV_DATA_STREAM
+      pass:Irlanda7!
+      database:DEV_RAW_DB
+      schema:CANVAS
+      warehouse:DEV_WH_STREAM
