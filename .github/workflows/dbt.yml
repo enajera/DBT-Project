@@ -2,7 +2,7 @@ name: DBT
 on:
   push:
     branches:
-      - local
+      - main
 
 permissions:
   pull-requests: write
