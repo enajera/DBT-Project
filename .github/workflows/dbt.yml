@@ -23,12 +23,3 @@ jobs:
 
     - name: Run DBT
       run: dbt run
-
-    - name: Create pull request
-      uses: peter-evans/create-pull-request@v3
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        title: "DBT Update"
-        body: "This pull request updates the DBT models."
-        head: local
-        base: main
