@@ -31,9 +31,10 @@ jobs:
       id: cpr
       uses: devops-infra/action-pull-request@v0.5.3
       with:
-        token: ${{ secrets.PAT }}
+        github_token: ${{ secrets.PAT }}
         title: "DBT pull request "
         assignee: ${{ github.actor }}
+        template: .github/PULL_REQUEST_TEMPLATE.md
         label: automatic,feature
         body: "This pull request updates the DBT models."
         source_branch: local
