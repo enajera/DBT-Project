@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 jobs:
-  Action-pull-request::
+  Action-pull-request:
     runs-on: ubuntu-latest
 
     steps:
