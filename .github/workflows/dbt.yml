@@ -30,7 +30,7 @@ jobs:
     - name: Create pull request
       id: cpr
       uses: vsoch/pull-request-action@master
-      with:
+      env:
          GITHUB_TOKEN: ${{ secrets.PAT }}
          PULL_REQUEST_BRANCH: "main"
          PULL_REQUEST_TITLE: "DBT Pull request"
