@@ -34,8 +34,7 @@ jobs:
          GITHUB_TOKEN: ${{ secrets.PAT }}
          PULL_REQUEST_BRANCH: "main"
          PULL_REQUEST_TITLE: "DBT Pull request"
-         PULL_REQUEST_STATE: true
-           
+                
     - name: Check outputs
       if: ${{ steps.cpr.outputs.pull-request-number }}
       run: |
