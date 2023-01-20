@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 jobs:
-  Action-pull-request:
+   auto-pull-request:
     runs-on: ubuntu-latest
 
     steps:
@@ -45,5 +45,5 @@ jobs:
       uses: peter-evans/enable-pull-request-automerge@v2
       with:
         token: ${{ secrets.PAT }}
-        pull-request-number: ${{ steps.create-pull-request.outputs.pull_request_number }}
+        pull-request-number: ${{ github.event.number }}
         merge-method: merge
