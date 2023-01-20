@@ -31,7 +31,7 @@ jobs:
       uses: vsoch/pull-request-action@master
       env:
          GITHUB_TOKEN: ${{ secrets.PAT }}
-         BRANCH_PREFIX: "local/"
+         BRANCH_PREFIX: ""
          PULL_REQUEST_BRANCH: "main"
          PULL_REQUEST_TITLE: "DBT Pull request"
                 
@@ -45,5 +45,5 @@ jobs:
       uses: peter-evans/enable-pull-request-automerge@v2
       with:
         token: ${{ secrets.PAT }}
-        pull-request-number: ${{ github.event.number }}
+        pull-request-number: ${{ steps.create-pull-request.outputs.pull_request_number }}
         merge-method: merge
