@@ -31,6 +31,7 @@ jobs:
       uses: vsoch/pull-request-action@master
       env:
          GITHUB_TOKEN: ${{ secrets.PAT }}
+         BRANCH_PREFIX: "local/"
          PULL_REQUEST_BRANCH: "main"
          PULL_REQUEST_TITLE: "DBT Pull request"
                 
