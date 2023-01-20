@@ -36,18 +36,14 @@ jobs:
          PULL_REQUEST_TITLE: "DBT Pull request"
                 
     - name: Check outputs
-      env:
-        pull_request_number_output: ${{ steps.cpr.outputs.pull_request_number }}
-        pull_request_url_output: ${{ steps.cpr.outputs.pull_request_url }}
-        pull_request_code_output: ${{ steps.cpr.outputs.pull_request_return_code }}
       run: |
-        echo "Pull Request Number - ${pull_request_number_output}"
-        echo "Pull Request URL - ${pull_request_url_output}"
-        echo "Pull Request Code - ${pull_request_code_output}"
+        echo "Pull Request Number - ${{ steps.cpr.outputs.pull_request_number }}"
+        echo "Pull Request URL - ${{ steps.cpr.outputs.pull_request_url }}"
+        echo "Pull Request Code - ${{ steps.cpr.outputs.pull_request_return_code }}"
                
     - name: Enable Pull Request Automerge
       uses: peter-evans/enable-pull-request-automerge@v2
       with:
         token: ${{ secrets.PAT }}
-        pull-request-number: ${PULL_REQUEST_NUMBER}
+        pull-request-number: ${{ steps.cpr.outputs.pull_request_number }}"
         merge-method: merge
