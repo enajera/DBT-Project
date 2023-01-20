@@ -28,7 +28,6 @@ jobs:
       run: dbt run
 
     - name: create-pull-request
-      id: cpr
       uses: vsoch/pull-request-action@master
       env:
          GITHUB_TOKEN: ${{ secrets.PAT }}
@@ -37,13 +36,13 @@ jobs:
                 
     - name: Check outputs
       run: |
-        echo "Pull Request Number - ${{ steps.cpr.outputs.pull_request_number }}"
-        echo "Pull Request URL - ${{ steps.cpr.outputs.pull_request_url }}"
-        echo "Pull Request Code - ${{ steps.cpr.outputs.pull_request_return_code }}"
+        echo "Pull Request Number - ${{ steps.create-pull-request.outputs.pull-request-number }}"
+        echo "Pull Request URL - ${{ steps.create-pull-request.outputs.pull-request-url }}"
+        echo "Pull Request Code - ${{ steps.create-pull-request.outputs.pull_request_return_code }}"
                
     - name: Enable Pull Request Automerge
       uses: peter-evans/enable-pull-request-automerge@v2
       with:
         token: ${{ secrets.PAT }}
-        pull-request-number: ${{ steps.cpr.outputs.pull_request_number }}"
+        pull-request-number: ${{ steps.create-pull-request.outputs.pull_request_number }}"
         merge-method: merge
