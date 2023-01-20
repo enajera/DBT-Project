@@ -36,13 +36,12 @@ jobs:
          PULL_REQUEST_TITLE: "DBT Pull request"
                 
     - name: Check outputs
-      if: ${{ steps.cpr.outputs.pull-request-number }}
       run: |
         echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
         echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
+        echo "Pull Request Code - ${{ steps.cpr.outputs.pull_request_return_code }}"
                
     - name: Enable Pull Request Automerge
-      if: steps.cpr.outputs.pull-request-operation == 'created'
       uses: peter-evans/enable-pull-request-automerge@v2
       with:
         token: ${{ secrets.PAT }}
