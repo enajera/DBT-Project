@@ -42,9 +42,9 @@ jobs:
         echo "Pull Request URL - ${{ env.PULL_REQUEST_URL }}"
         echo "Pull Request Code - ${{ env.PULL_REQUEST_RETURN_CODE }}"
                
-    # - name: Enable Pull Request Automerge
-    #   uses: peter-evans/enable-pull-request-automerge@v2
-    #   with:
-    #     token: ${{ secrets.PAT }}
-    #     pull-request-number: ${{ env.PULL_REQUEST_NUMBER }}
-    #     merge-method: squash
+    - name: Enable Pull Request Automerge
+      uses: peter-evans/enable-pull-request-automerge@v2
+      with:
+        token: ${{ secrets.PAT }}
+        pull-request-number: ${{ env.PULL_REQUEST_NUMBER }}
+        merge-method: squash
