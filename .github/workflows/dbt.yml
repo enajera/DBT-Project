@@ -38,7 +38,7 @@ jobs:
                 
     - name: Check outputs
       run: |
-        echo "Pull Request Number - ${{ steps.pull-request-action.outputs.pull-request-number }}"
+        echo "Pull Request Number - ${ PULL_REQUEST_NUMBER }"
         echo "Pull Request URL - ${{ steps.pull-request-action.outputs.pull-request-url }}"
         echo "Pull Request Code - ${{ steps.pull-request-action.outputs.pull_request_return_code }}"
                
@@ -46,5 +46,5 @@ jobs:
       uses: peter-evans/enable-pull-request-automerge@v2
       with:
         token: ${{ secrets.PAT }}
-        pull-request-number: ${{ steps.pull-request-action.outputs.pull_request_number }}
+        pull-request-number: ${ PULL_REQUEST_NUMBER }
         merge-method: merge
