@@ -16,21 +16,21 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.9
+    # - name: Set up Python
+    #   uses: actions/setup-python@v2
+    #   with:
+    #     python-version: 3.9
 
-    - name: Install dependencies
-      run: 
-        pip install dbt-snowflake
-    - name: Run DBT
-      run: dbt run
+    # - name: Install dependencies
+    #   run: 
+    #     pip install dbt-snowflake
+    # - name: Run DBT
+    #   run: dbt run
 
     - name: create-pull-request
       uses: vsoch/pull-request-action@master
       env:
-         GITHUB_TOKEN: ${{ secrets.PAT }}
+        #  GITHUB_TOKEN: ${{ secrets.PAT }}
          BRANCH_PREFIX: ""
          PULL_REQUEST_BRANCH: "main"
          PULL_REQUEST_TITLE: "DBT Pull request"
