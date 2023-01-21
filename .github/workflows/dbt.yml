@@ -27,23 +27,24 @@ jobs:
     # - name: Run DBT
     #   run: dbt run
 
-    - name: Create Pull Request
-      id: cpr
-      uses: peter-evans/create-pull-request@v3
-      with:
-       token: ${{ secrets.PAT }}
-
+    - name: pra
+      uses: vsoch/pull-request-action@master
+      env:
+         GITHUB_TOKEN: ${{ secrets.PAT }}
+         BRANCH_PREFIX: ""
+         PULL_REQUEST_BRANCH: "main"
+         PULL_REQUEST_TITLE: "DBT Pull request"
+        
+                
+    - name: Check outputs
+      run: |
+        echo "Pull Request Number - ${{ env.PULL_REQUEST_NUMBER }}"
+        echo "Pull Request URL - ${{ env.PULL_REQUEST_URL }}"
+        echo "Pull Request Code - ${{ env.PULL_REQUEST_RETURN_CODE }}"
+               
     - name: Enable Pull Request Automerge
-      if: steps.cpr.outputs.pull-request-operation == 'created'
       uses: peter-evans/enable-pull-request-automerge@v2
       with:
-          token: ${{ secrets.PAT }}
-          pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
-          merge-method: squash
-
-    - name: Auto approve
-      if: steps.cpr.outputs.pull-request-operation == 'created'
-      uses: juliangruber/approve-pull-request-action@v2
-      with:
-          github-token: ${{ secrets.PAT }}
-          number: ${{ steps.cpr.outputs.pull-request-number }}
+        token: ${{ secrets.PAT }}
+        pull-request-number: ${{ env.PULL_REQUEST_NUMBER }}
+        merge-method: merge
