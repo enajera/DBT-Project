@@ -9,48 +9,41 @@ permissions:
   contents: write
 
 jobs:
-  Action-pull-request:
+   auto-pull-request:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.9
+    # - name: Set up Python
+    #   uses: actions/setup-python@v2
+    #   with:
+    #     python-version: 3.9
 
-    - name: Install dependencies
-      run: 
-        pip install dbt-snowflake
-    - name: Run DBT
-      run: dbt run
+    # - name: Install dependencies
+    #   run: 
+    #     pip install dbt-snowflake
+    # - name: Run DBT
+    #   run: dbt run
 
-    - name: Create pull request
+    - name: Create Pull Request
       id: cpr
-      uses: devops-infra/action-pull-request@v0.5.3
+      uses: peter-evans/create-pull-request@v3
       with:
-        github_token: ${{ secrets.PAT }}
-        title: "DBT pull request "
-        assignee: ${{ github.actor }}
-        template: .github/PULL_REQUEST_TEMPLATE.md
-        label: automatic,feature
-        body: "This pull request updates the DBT models."
-        source_branch: local
-        target_branch: main
-        allow_no_diff: false
-           
-    - name: Check outputs
-      if: ${{ steps.cpr.outputs.pull-request-number }}
-      run: |
-        echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
-        echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
-               
+       token: ${{ secrets.PAT }}
+
     - name: Enable Pull Request Automerge
       if: steps.cpr.outputs.pull-request-operation == 'created'
       uses: peter-evans/enable-pull-request-automerge@v2
       with:
-        token: ${{ secrets.PAT }}
-        pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
-        merge-method: squash
+          token: ${{ secrets.PAT }}
+          pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
+          merge-method: squash
+
+    - name: Auto approve
+      if: steps.cpr.outputs.pull-request-operation == 'created'
+      uses: juliangruber/approve-pull-request-action@v2
+      with:
+          github-token: ${{ secrets.PAT }}
+          number: ${{ steps.cpr.outputs.pull-request-number }}

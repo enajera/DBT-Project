@@ -1,8 +1,7 @@
 -- Esto es una prueba GOBTPAC
 Select * from DEV_RAW_DB.CANVAS.GOBTPAC;
 
--- Ultima prueba
-Select * from DEV_RAW_DB.CANVAS.GOBTPAC; 
+-- Otras pruebas vbvb
+Select * from DEV_RAW_DB.CANVAS.GOBTPAC;
+-- mas
 
---Otra massss
- Select * from DEV_RAW_DB.CANVAS.GOBTPAC; 
