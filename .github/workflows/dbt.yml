@@ -34,7 +34,7 @@ jobs:
          BRANCH_PREFIX: ""
          PULL_REQUEST_BRANCH: "main"
          PULL_REQUEST_TITLE: "DBT Pull request"
-         PULL_REQUEST_UPDATE: "true"
+        
                 
     - name: Check outputs
       run: |
