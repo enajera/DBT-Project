@@ -27,7 +27,7 @@ jobs:
     # - name: Run DBT
     #   run: dbt run
 
-    - name: pull-request-action
+    - name: pra
       uses: vsoch/pull-request-action@master
       env:
          GITHUB_TOKEN: ${{ secrets.PAT }}
@@ -38,13 +38,13 @@ jobs:
                 
     - name: Check outputs
       run: |
-        echo "Pull Request Number - ${ PULL_REQUEST_NUMBER }"
-        echo "Pull Request URL - ${{ steps.pull-request-action.outputs.pull-request-url }}"
-        echo "Pull Request Code - ${{ steps.pull-request-action.outputs.pull_request_return_code }}"
+        echo "Pull Request Number - ${{ steps.pra.outputs.pull-request-number }}"
+        echo "Pull Request URL - ${{ steps.pra.outputs.pull-request-url }}"
+        echo "Pull Request Code - ${{ steps.pra.outputs.pull_request_return_code }}"
                
     - name: Enable Pull Request Automerge
       uses: peter-evans/enable-pull-request-automerge@v2
       with:
         token: ${{ secrets.PAT }}
-        pull-request-number: ${ PULL_REQUEST_NUMBER }
+        pull-request-number: ${{ steps.pra.outputs.pull_request_number }}
         merge-method: merge
