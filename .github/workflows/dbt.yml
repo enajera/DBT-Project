@@ -38,13 +38,13 @@ jobs:
                 
     - name: Check outputs
       run: |
-        echo "Pull Request Number - ${{ steps.pra.outputs.pull-request-number }}"
-        echo "Pull Request URL - ${{ steps.pra.outputs.pull-request-url }}"
-        echo "Pull Request Code - ${{ steps.pra.outputs.pull_request_return_code }}"
+        echo "Pull Request Number - ${{ env.PULL_REQUEST_NUMBER }}"
+        echo "Pull Request URL - ${{ env.PULL_REQUEST_URL }}"
+        echo "Pull Request Code - ${{ env.PULL_REQUEST_RETURN_CODE }}"
                
     - name: Enable Pull Request Automerge
       uses: peter-evans/enable-pull-request-automerge@v2
       with:
         token: ${{ secrets.PAT }}
-        pull-request-number: ${{ steps.pra.outputs.pull_request_number }}
+        pull-request-number: ${{ env.PULL_REQUEST_NUMBER }}
         merge-method: merge
