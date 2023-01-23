@@ -4,30 +4,34 @@ on:
     branches:
       - main
 
+permissions:
+  pull-requests: write
+  contents: write
+
 jobs:
   auto-pull-request:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
    
     - name: Update author information
       uses: echo ${{ env.GIT_COMMIT_AUTHOR_NAME }} > AUTHOR
 
-    # - name: Set up Python
-    #   uses: actions/setup-python@v2
-    #   with:
-    #     python-version: 3.9
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
 
-    # - name: Install dependencies
-    #   run: 
-    #     pip install dbt-snowflake
-    # - name: Run DBT
-    #   run: dbt run
+    - name: Install dependencies
+      run: 
+        pip install dbt-snowflake
+    - name: Run DBT
+      run: dbt run
 
     - name: Create Pull Request
-      uses: peter-evans/create-pull-request@v3
+      uses: peter-evans/create-pull-request@v4
       with:
          token: ${{ secrets.PAT }}
          branch: "local"
