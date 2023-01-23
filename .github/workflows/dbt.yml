@@ -41,7 +41,7 @@ jobs:
          author: ${{ env.GIT_COMMIT_AUTHOR_NAME }} <${{ env.GIT_COMMIT_AUTHOR_EMAIL }}">
          body: Automated Pull request
          delete-branch: false
-         
+
          
     - name: Check outputs
       run: |
@@ -51,13 +51,13 @@ jobs:
       uses: juliangruber/approve-pull-request-action@v1
       with:
          github-token: ${{ secrets.PAT }}
-         number: ${{ PULL_REQUEST_NUMBER }}
+         number: ${{ env.PULL_REQUEST_NUMBER }}
     
     - name: Merge Pull request
       uses: juliangruber/merge-pull-request-action@v1
       with:
          github-token: ${{ secrets.GITHUB_TOKEN }}
-         number: ${{ PULL_REQUEST_NUMBER}}
+         number: ${{ env.PULL_REQUEST_NUMBER}}
          method: squash
 
     
