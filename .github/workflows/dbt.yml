@@ -38,8 +38,7 @@ jobs:
          title: "Pull request DBT"
          committer: ${{ env.GIT_COMMIT_AUTHOR_NAME }} <${{ env.GIT_COMMIT_AUTHOR_EMAIL }}
          author: ${{ env.GIT_COMMIT_AUTHOR_NAME }} <${{ env.GIT_COMMIT_AUTHOR_EMAIL }}
-         body: 
-            Automated Pull request
+         body: Automated Pull request
          delete-branch: false
         
                 
@@ -49,9 +48,9 @@ jobs:
         echo "Pull Request URL - ${{ env.PULL_REQUEST_URL }}"
         echo "Pull Request Code - ${{ env.PULL_REQUEST_RETURN_CODE }}"
 
-    # - name: Enable Pull Request Automerge
-    #   uses: peter-evans/enable-pull-request-automerge@v2
-    #   with:
-    #     token: ${{ secrets.PAT }}
-    #     pull-request-number: ${{ env.PULL_REQUEST_NUMBER }}
-    #     merge-method: squash
+    - name: Enable Pull Request Automerge
+      uses: peter-evans/enable-pull-request-automerge@v2
+      with:
+        token: ${{ secrets.PAT }}
+        pull-request-number: ${{ env.PULL_REQUEST_NUMBER }}
+        merge-method: squash
