@@ -43,19 +43,13 @@ jobs:
       run: |
         echo "Pull Request Number - ${{ env.PULL_REQUEST_NUMBER }}"
     
-    - id: automerge
-      name: Automerge
+    - name: Automerge
       uses: "pascalgn/automerge-action@v0.15.5"
       env:
         GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
         MERGE_METHOD: "squash"
         MERGE_COMMIT_MESSAGE: "pull-request-one-commit"
         UPDATE_METHOD: "rebase"
-
-    - name: Feedback
-      if: steps.automerge.outputs.mergeResult == "merged"
-      run: |
-        echo "Pull request ${{ steps.automerge.outputs.pullRequestNumber }} merged!"
        
     # - name: Approve Pull Request
     #   uses: juliangruber/approve-pull-request-action@v1
