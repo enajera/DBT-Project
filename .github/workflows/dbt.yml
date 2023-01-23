@@ -30,6 +30,7 @@ jobs:
     #   run: dbt run
 
     - name: Create Pull Request
+      id: pr
       uses: peter-evans/create-pull-request@v3
       with:
          token: ${{ secrets.GITHUB_TOKEN }}
@@ -45,13 +46,13 @@ jobs:
       uses: juliangruber/approve-pull-request-action@v1
       with:
          github-token: ${{ secrets.PAT }}
-         number: ${{ env.PULL_REQUEST_NUMBER }}
+         number: ${{ steps.pr.outputs.pull-request-number }}
     
     - name: Merge Pull request
       uses: juliangruber/merge-pull-request-action@v1
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
-        number: ${{ env.PULL_REQUEST_NUMBER}}
+        number: ${{ steps.pr.outputs.pull-request-number}}
         method: squash
 
     
