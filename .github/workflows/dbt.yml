@@ -16,8 +16,8 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
    
-    # - name: Update author information
-    #   uses: echo ${{ env.GIT_COMMIT_AUTHOR_NAME }} > AUTHOR
+    - name: Update author information
+      uses: echo ${{ env.GIT_COMMIT_AUTHOR_NAME }} > AUTHOR
 
     # - name: Set up Python
     #   uses: actions/setup-python@v2
