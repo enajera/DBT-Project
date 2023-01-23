@@ -1,4 +1,4 @@
-name: DBT Pull Request
+name: DBT
 on:
   push:
     branches:
