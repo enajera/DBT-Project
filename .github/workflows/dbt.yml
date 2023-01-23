@@ -33,7 +33,7 @@ jobs:
       uses: peter-evans/create-pull-request@v3
       with:
          token: ${{ secrets.GITHUB_TOKEN }}
-         branch: "local"
+         branch: "nuevos_cambios"
          base: main
          title: "Pull request DBT"
          committer: ${{ env.GIT_COMMIT_AUTHOR_NAME }} <${{ env.GIT_COMMIT_AUTHOR_EMAIL }}">
