@@ -19,5 +19,7 @@ Select * from DEV_RAW_DB.CANVAS.GOBTPAC;
 
 --mas mainaaaaaaaaaasdsdsdsd
 
+--ya no mas
+
 
 
