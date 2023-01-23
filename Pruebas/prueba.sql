@@ -10,3 +10,6 @@ Select * from DEV_RAW_DB.CANVAS.GOBTPAC;
 -- Ahora estoy en nuevos cambios
 Select * from DEV_RAW_DB.CANVAS.GOBTPAC;
 
+-- Y voy a subir nuevos cambios
+Select * from DEV_RAW_DB.CANVAS.GOBTPAC;
+
