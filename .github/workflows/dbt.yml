@@ -43,27 +43,18 @@ jobs:
       run: |
         echo "Pull Request Number - ${{ env.PULL_REQUEST_NUMBER }}"
     
-    - name: Automerge
-      uses: "pascalgn/automerge-action@v0.15.5"
-      env:
-        GITHUB_TOKEN: "${{ secrets.PAT }}"
-        MERGE_METHOD: "rebase"
-        UPDATE_METHOD: "rebase"
-        BASE_BRANCHES: main
-        LOG: "DEBUG"  # or "TRACE"
-
        
-    # - name: Approve Pull Request
-    #   uses: juliangruber/approve-pull-request-action@v1
-    #   with:
-    #      github-token: ${{ secrets.AUTHORIZATOR }}
-    #      number: ${{ env.PULL_REQUEST_NUMBER }}
+    - name: Approve Pull Request
+      uses: juliangruber/approve-pull-request-action@v1
+      with:
+         github-token: ${{ secrets.AUTHORIZATOR }}
+         number: ${{ env.PULL_REQUEST_NUMBER }}
     
-    # - name: Merge Pull request
-    #   uses: juliangruber/merge-pull-request-action@v1
-    #   with:
-    #      github-token: ${{ secrets.GITHUB_TOKEN }}
-    #      number: ${{ env.PULL_REQUEST_NUMBER }}
-    #      method: squash
+    - name: Merge Pull request
+      uses: juliangruber/merge-pull-request-action@v1
+      with:
+         github-token: ${{ secrets.GITHUB_TOKEN }}
+         number: ${{ env.PULL_REQUEST_NUMBER }}
+         method: rebase
 
     
