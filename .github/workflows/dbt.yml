@@ -10,7 +10,7 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v2
    
     - name: Update author information
       uses: echo ${{ env.GIT_COMMIT_AUTHOR_NAME }} > AUTHOR
@@ -27,7 +27,7 @@ jobs:
     #   run: dbt run
 
     - name: Create Pull Request
-      uses: peter-evans/create-pull-request@v4
+      uses: peter-evans/create-pull-request@v3
       with:
          token: ${{ secrets.PAT }}
          branch: "local"
