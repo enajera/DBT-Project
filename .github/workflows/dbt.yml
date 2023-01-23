@@ -2,7 +2,7 @@ name: DBT Pull Request
 on:
   push:
     branches:
-      - nuevos_cambios
+      - main
 
 jobs:
    auto-pull-request:
