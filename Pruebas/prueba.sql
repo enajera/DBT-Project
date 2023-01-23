@@ -10,9 +10,14 @@ Select * from DEV_RAW_DB.CANVAS.GOBTPAC;
 -- Ahora estoy en nuevos_cambios pero los quiero en main
 Select * from DEV_RAW_DB.CANVAS.GOBTPAC;
 
--- Quiero subir mis cambios a main
--- Aja y entonces????
+-- Espero que esto sea lo ultimo
+Select * from DEV_RAW_DB.CANVAS.GOBTPAC;
+
+--ojala
+
+
 
 --mas mainaaaaaaaaaasdsdsdsd
+
 
 

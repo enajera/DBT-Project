@@ -18,18 +18,19 @@ jobs:
     - name: Update author information
       run: echo ${{ env.GIT_COMMIT_AUTHOR_NAME }} > AUTHOR
 
-    # - name: Set up Python
-    #   uses: actions/setup-python@v2
-    #   with:
-    #     python-version: 3.9
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
 
-    # - name: Install dependencies
-    #   run: 
-    #     pip install dbt-snowflake
-    # - name: Run DBT
-    #   run: dbt run
+    - name: Install dependencies
+      run: 
+        pip install dbt-snowflake
+    - name: Run DBT
+      run: dbt run
 
-    - name: pra
+
+    - name: Create Pull Request
       uses: vsoch/pull-request-action@master
       env:
          GITHUB_TOKEN: ${{ secrets.PAT }}
@@ -37,22 +38,29 @@ jobs:
          PULL_REQUEST_BRANCH: "main"
          PULL_REQUEST_TITLE: "DBT Pull request"
 
-         
+
     - name: Check outputs
       run: |
         echo "Pull Request Number - ${{ env.PULL_REQUEST_NUMBER }}"
-       
-    - name: Approve Pull Request
-      uses: juliangruber/approve-pull-request-action@v1
-      with:
-         github-token: ${{ secrets.AUTHORIZATOR }}
-         number: ${{ env.PULL_REQUEST_NUMBER }}
     
-    - name: Merge Pull request
-      uses: juliangruber/merge-pull-request-action@v1
-      with:
-         github-token: ${{ secrets.GITHUB_TOKEN }}
-         number: ${{ env.PULL_REQUEST_NUMBER }}
-         method: squash
+    - name: Automerge
+      uses: "pascalgn/automerge-action@v0.15.5"
+      env:
+        GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        MERGE_METHOD: "rebase"
+        UPDATE_METHOD: "rebase"
+       
+    # - name: Approve Pull Request
+    #   uses: juliangruber/approve-pull-request-action@v1
+    #   with:
+    #      github-token: ${{ secrets.AUTHORIZATOR }}
+    #      number: ${{ env.PULL_REQUEST_NUMBER }}
+    
+    # - name: Merge Pull request
+    #   uses: juliangruber/merge-pull-request-action@v1
+    #   with:
+    #      github-token: ${{ secrets.GITHUB_TOKEN }}
+    #      number: ${{ env.PULL_REQUEST_NUMBER }}
+    #      method: squash
 
     
