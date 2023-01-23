@@ -39,7 +39,7 @@ jobs:
          PULL_REQUEST_TITLE: "DBT Pull request"
 
 
-   - name: Check outputs
+    - name: Check outputs
       run: |
         echo "Pull Request Number - ${{ env.PULL_REQUEST_NUMBER }}"
     
