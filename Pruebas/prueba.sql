@@ -13,6 +13,8 @@ Select * from DEV_RAW_DB.CANVAS.GOBTPAC;
 -- Espero que esto sea lo ultimo
 Select * from DEV_RAW_DB.CANVAS.GOBTPAC;
 
+--ojala
+
 
 
 
