@@ -38,7 +38,7 @@ jobs:
          title: "Pull request DBT"
          committer: ${{ env.GIT_COMMIT_AUTHOR_NAME }} <${{ env.GIT_COMMIT_AUTHOR_EMAIL }}">
          author: ${{ env.GIT_COMMIT_AUTHOR_NAME }} <${{ env.GIT_COMMIT_AUTHOR_EMAIL }}">
-         body:   Automated Pull request
+         body: Automated Pull request
          delete-branch: false
     
     - name: Approve Pull Request
