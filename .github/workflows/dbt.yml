@@ -29,6 +29,7 @@ jobs:
     - name: Run DBT
       run: dbt run
 
+
     - name: Create Pull Request
       uses: vsoch/pull-request-action@master
       env:
@@ -36,8 +37,9 @@ jobs:
          BRANCH_PREFIX: ""
          PULL_REQUEST_BRANCH: "main"
          PULL_REQUEST_TITLE: "DBT Pull request"
-                  
-    - name: Check outputs
+
+
+   - name: Check outputs
       run: |
         echo "Pull Request Number - ${{ env.PULL_REQUEST_NUMBER }}"
     
