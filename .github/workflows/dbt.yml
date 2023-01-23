@@ -30,7 +30,6 @@ jobs:
     #   run: dbt run
 
     - name: Create Pull Request
-      id: pr
       uses: peter-evans/create-pull-request@v3
       with:
          token: ${{ secrets.PAT }}
