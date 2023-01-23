@@ -10,7 +10,7 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v2
 
     - name: extract git commit data
       uses: rlespinasse/git-commit-data-action@v1.x
@@ -30,14 +30,14 @@ jobs:
     #   run: dbt run
 
     - name: Create Pull Request
-      uses: peter-evans/create-pull-request@v4
+      uses: peter-evans/create-pull-request@v3
       with:
          token: ${{ secrets.PAT }}
          branch: "local"
          base: main
          title: "Pull request DBT"
-         committer: ${{ env.GIT_COMMIT_AUTHOR_NAME }} <${{ env.GIT_COMMIT_AUTHOR_EMAIL }}
-         author: ${{ env.GIT_COMMIT_AUTHOR_NAME }} <${{ env.GIT_COMMIT_AUTHOR_EMAIL }}
+         committer: ${{ env.GIT_COMMIT_AUTHOR_NAME }} <${{ env.GIT_COMMIT_AUTHOR_EMAIL }}>
+         author: ${{ env.GIT_COMMIT_AUTHOR_NAME }} <${{ env.GIT_COMMIT_AUTHOR_EMAIL }}>
          body:   Automated Pull request
          delete-branch: false
         
