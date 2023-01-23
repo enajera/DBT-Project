@@ -33,7 +33,7 @@ jobs:
       id: pr
       uses: peter-evans/create-pull-request@v3
       with:
-         token: ${{ secrets.GITHUB_TOKEN }}
+         token: ${{ secrets.PAT }}
          branch: "nuevos_cambios"
          base: main
          title: "Pull request DBT"
@@ -50,7 +50,7 @@ jobs:
     - name: Approve Pull Request
       uses: juliangruber/approve-pull-request-action@v1
       with:
-         github-token: ${{ secrets.PAT }}
+         github-token: ${{ secrets.AUTHORIZATOR }}
          number: ${{ env.PULL_REQUEST_NUMBER }}
     
     - name: Merge Pull request
