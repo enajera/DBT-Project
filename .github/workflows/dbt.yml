@@ -1,23 +1,22 @@
-name: DBT
+name: DBT Pull Request
 on:
   push:
     branches:
       - main
 
-permissions:
-  pull-requests: write
-  contents: write
-
 jobs:
-  auto-pull-request:
+   auto-pull-request:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout
       uses: actions/checkout@v3
-   
+
+    - name: extract git commit data
+      uses: rlespinasse/git-commit-data-action@v1.x
+    
     - name: Update author information
-      uses: echo ${{ env.GIT_COMMIT_AUTHOR_NAME }} > AUTHOR
+      run: echo ${{ env.GIT_COMMIT_AUTHOR_NAME }} > AUTHOR
 
     # - name: Set up Python
     #   uses: actions/setup-python@v2
@@ -30,23 +29,28 @@ jobs:
     # - name: Run DBT
     #   run: dbt run
 
-    # - name: Create Pull Request
-    #   uses: peter-evans/create-pull-request@v4
-    #   with:
-    #      token: ${{ secrets.PAT }}
-    #      branch: "local"
-    #      base: main
-    #      title: "Pull request DBT"
-    #      committer: ${{ env.GIT_COMMIT_AUTHOR_NAME }} <${{ env.GIT_COMMIT_AUTHOR_EMAIL }}
-    #      author: ${{ env.GIT_COMMIT_AUTHOR_NAME }} <${{ env.GIT_COMMIT_AUTHOR_EMAIL }}
-    #      body: Automated Pull request
-    #      delete-branch: false
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v4
+      with:
+         token: ${{ secrets.PAT }}
+         branch: "local"
+         base: main
+         title: "Pull request DBT"
+         committer: ${{ env.GIT_COMMIT_AUTHOR_NAME }} <${{ env.GIT_COMMIT_AUTHOR_EMAIL }}
+         author: ${{ env.GIT_COMMIT_AUTHOR_NAME }} <${{ env.GIT_COMMIT_AUTHOR_EMAIL }}
+         body:   Automated Pull request
+         delete-branch: false
         
                 
-    # - name: Check outputs
-    #   run: |
-    #     echo "Pull Request Number - ${{ env.PULL_REQUEST_NUMBER }}"
-    #     echo "Pull Request URL - ${{ env.PULL_REQUEST_URL }}"
-    #     echo "Pull Request Code - ${{ env.PULL_REQUEST_RETURN_CODE }}"
+    - name: Check outputs
+      run: |
+        echo "Pull Request Number - ${{ env.PULL_REQUEST_NUMBER }}"
+        echo "Pull Request URL - ${{ env.PULL_REQUEST_URL }}"
+        echo "Pull Request Code - ${{ env.PULL_REQUEST_RETURN_CODE }}"
 
- 
+    - name: Enable Pull Request Automerge
+      uses: peter-evans/enable-pull-request-automerge@v2
+      with:
+        token: ${{ secrets.PAT }}
+        pull-request-number: ${{ env.PULL_REQUEST_NUMBER }}
+        merge-method: squash
