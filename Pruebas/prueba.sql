@@ -7,6 +7,6 @@ Select * from DEV_RAW_DB.CANVAS.GOBTPAC;
 -- mas de lo mismo  de antes
 Select * from DEV_RAW_DB.CANVAS.GOBTPAC;
 
--- estoy en main
+-- Ahora estoy en nuevos cambios
 Select * from DEV_RAW_DB.CANVAS.GOBTPAC;
 
