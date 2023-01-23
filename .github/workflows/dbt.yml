@@ -29,17 +29,13 @@ jobs:
     # - name: Run DBT
     #   run: dbt run
 
-    - name: Create Pull Request
-      uses: peter-evans/create-pull-request@v3
-      with:
-         token: ${{ secrets.PAT }}
-         branch: "nuevos_cambios"
-         base: main
-         title: "Pull request DBT"
-         committer: ${{ env.GIT_COMMIT_AUTHOR_NAME }} <${{ env.GIT_COMMIT_AUTHOR_EMAIL }}">
-         author: ${{ env.GIT_COMMIT_AUTHOR_NAME }} <${{ env.GIT_COMMIT_AUTHOR_EMAIL }}">
-         body: Automated Pull request
-         delete-branch: false
+    - name: pra
+      uses: vsoch/pull-request-action@master
+      env:
+         GITHUB_TOKEN: ${{ secrets.PAT }}
+         BRANCH_PREFIX: ""
+         PULL_REQUEST_BRANCH: "main"
+         PULL_REQUEST_TITLE: "DBT Pull request"
 
          
     - name: Check outputs
