@@ -13,3 +13,5 @@ Select * from DEV_RAW_DB.CANVAS.GOBTPAC;
 -- Quiero subir mis cambios a main
 -- Aja y entonces????
 
+-- mas de lo mismo  de antes
+Select * from DEV_RAW_DB.CANVAS.GOBTPAC;
